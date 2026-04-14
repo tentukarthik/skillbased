@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Beyond the Marksheet</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+
+      /* 🌈 Gradient + Image Background */
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                  url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f");
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      color: white;
+    }
+
+    h1 {
+      margin-top: 40px;
+    }
+
+    input {
+      padding: 10px;
+      width: 260px;
+      margin: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #ff9800;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: #e68900;
+    }
+
+    .card {
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      color: black;
+      border-radius: 10px;
+      width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🎓 Beyond the Marksheet</h1>
+  <h3>Empowering Skill-Based Career Discovery</h3>
+
+  <input type="text" id="skills" placeholder="Enter skills (e.g., coding, design)">
+  <br>
+  <button onclick="findCareer()">Find Career</button>
+
+  <div id="result"></div>
+
+  <script>
+    const careers = [
+      {
+        keywords: ["coding", "programming", "logic"],
+        title: "Software Developer 👨‍💻",
+        roadmap: [
+          "Learn Programming (Java/Python/JS)",
+          "Practice Data Structures",
+          "Build Real Projects",
+          "Apply for internships/jobs"
+        ],
+        future: "High demand in IT, AI, startups 🚀"
+      },
+      {
+        keywords: ["design", "ui", "ux", "creativity"],
+        title: "UI/UX Designer 🎨",
+        roadmap: [
+          "Learn Figma / Adobe XD",
+          "Understand UX principles",
+          "Build portfolio",
+          "Freelance or apply for jobs"
+        ],
+        future: "Growing demand in product companies 📈"
+      },
+      {
+        keywords: ["communication", "marketing", "sales"],
+        title: "Digital Marketer 📢",
+        roadmap: [
+          "Learn SEO & Social Media",
+          "Run campaigns",
+          "Analyze data",
+          "Work with brands"
+        ],
+        future: "Huge growth in online business 🌐"
+      },
+      {
+        keywords: ["teaching", "helping", "explaining"],
+        title: "Teacher / Mentor 👩‍🏫",
+        roadmap: [
+          "Choose subject expertise",
+          "Improve communication",
+          "Get certification",
+          "Start teaching"
+        ],
+        future: "Evergreen career 🌱"
+      }
+    ];
+
+    function findCareer() {
+      const input = document.getElementById("skills").value.toLowerCase();
+      const skills = input.split(",");
+
+      let match = careers.find(career =>
+        career.keywords.some(keyword =>
+          skills.some(skill => skill.trim().includes(keyword))
+        )
+      );
+
+      if (!match) {
+        match = {
+          title: "No Exact Match 😕",
+          roadmap: [
+            "Explore different skills",
+            "Try internships",
+            "Learn new technologies"
+          ],
+          future: "Your career path will evolve with learning 💡"
+        };
+      }
+
+      displayResult(match);
+    }
+
+    function displayResult(result) {
+      const div = document.getElementById("result");
+
+      div.innerHTML = `
+        <div class="card">
+          <h2>${result.title}</h2>
+          <h3>📍 Roadmap:</h3>
+          <ul>
+            ${result.roadmap.map(step => `<li>${step}</li>`).join("")}
+          </ul>
+          <h3>🚀 Future Scope:</h3>
+          <p>${result.future}</p>
+        </div>
+      `;
+    }
+  </script>
+
+</body>
+</html>
