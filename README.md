@@ -1,196 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beyond the Marksheet | Career Discovery</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <title>Beyond the Marksheet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body {
-            /* Replace the linear-gradient with a URL if you want a specific image */
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            background-size: cover;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
-        }
+  <style>
+    /* ===== BODY BACKGROUND ===== */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
 
-        header {
-            text-align: center;
-            color: white;
-            margin-bottom: 50px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
+      background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f') no-repeat center center/cover;
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
+      color: white;
+      text-align: center;
+    }
 
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            width: 100%;
-        }
+    /* Dark overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: -1;
+    }
 
-        /* Glassmorphism Card Effect */
-        .career-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            color: white;
-        }
+    /* ===== HEADER ===== */
+    header {
+      padding: 25px;
+      font-size: 30px;
+      font-weight: bold;
+    }
 
-        .career-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.25);
-        }
+    header small {
+      font-size: 16px;
+      font-weight: normal;
+    }
 
-        .career-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
+    /* ===== MAIN CONTAINER ===== */
+    .container {
+      margin-top: 80px;
+    }
 
-        .career-card h2 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-        }
+    h2 {
+      margin-bottom: 20px;
+    }
 
-        .skill-btn {
-            background: #ffffff;
-            color: #1a2a6c;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
+    /* ===== INPUT ===== */
+    input {
+      padding: 12px;
+      width: 260px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+    }
 
-        .skill-btn:hover {
-            background: #fdbb2d;
-            transform: scale(1.05);
-        }
+    /* ===== BUTTON ===== */
+    button {
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: none;
+      background-color: #ff9800;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: 0.3s;
+    }
 
-        .skills-list {
-            margin-top: 20px;
-            display: none; /* Hidden by default */
-            text-align: left;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 15px;
-            border-radius: 10px;
-            animation: fadeIn 0.5s ease;
-        }
+    button:hover {
+      background-color: #e68900;
+      transform: scale(1.05);
+    }
 
-        .skills-list ul {
-            list-style: none;
-        }
+    /* ===== RESULT BOX ===== */
+    .result {
+      margin-top: 40px;
+      padding: 25px;
+      border-radius: 15px;
 
-        .skills-list li {
-            margin: 8px 0;
-            padding-left: 20px;
-            position: relative;
-        }
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
 
-        .skills-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #fdbb2d;
-        }
+      display: none;
+      width: 80%;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    .result h3 {
+      margin-bottom: 10px;
+      color: #ffd54f;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      margin-top: 60px;
+      padding: 15px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      input {
+        width: 200px;
+        margin-bottom: 10px;
+      }
+
+      button {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <header>
-        <h1>Beyond the Marksheet</h1>
-        <p>Discover your future based on what you can <b>do</b>, not just what you've <b>scored</b>.</p>
-    </header>
+  <!-- ===== HEADER ===== -->
+  <header>
+    Beyond the Marksheet 🎓 <br>
+    <small>Empowering Skill-Based Career Discovery</small>
+  </header>
 
-    <div class="container">
-        <div class="career-card">
-            <div class="career-icon">💻</div>
-            <h2>Full Stack Developer</h2>
-            <button class="skill-btn" onclick="toggleSkills('skills1')">View Required Skills</button>
-            <div id="skills1" class="skills-list">
-                <ul>
-                    <li>JavaScript / TypeScript</li>
-                    <li>React or Next.js</li>
-                    <li>Database Management (SQL/NoSQL)</li>
-                    <li>Problem Solving & Logic</li>
-                </ul>
-            </div>
-        </div>
+  <!-- ===== INPUT SECTION ===== -->
+  <div class="container">
+    <h2>Enter Your Skill</h2>
 
-        <div class="career-card">
-            <div class="career-icon">🎨</div>
-            <h2>UI/UX Designer</h2>
-            <button class="skill-btn" onclick="toggleSkills('skills2')">View Required Skills</button>
-            <div id="skills2" class="skills-list">
-                <ul>
-                    <li>Figma / Adobe XD</li>
-                    <li>Visual Hierarchy</li>
-                    <li>User Research</li>
-                    <li>Prototyping & Wireframing</li>
-                </ul>
-            </div>
-        </div>
+    <input type="text" id="skillInput" placeholder="e.g., coding, design, writing">
+    <br>
+    <button onclick="findCareer()">Find Career</button>
 
-        <div class="career-card">
-            <div class="career-icon">📊</div>
-            <h2>Data Scientist</h2>
-            <button class="skill-btn" onclick="toggleSkills('skills3')">View Required Skills</button>
-            <div id="skills3" class="skills-list">
-                <ul>
-                    <li>Python / R Programming</li>
-                    <li>Statistical Analysis</li>
-                    <li>Machine Learning Models</li>
-                    <li>Data Visualization</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <!-- RESULT -->
+    <div id="output" class="result"></div>
+  </div>
 
-    <script>
-        function toggleSkills(id) {
-            const skillDiv = document.getElementById(id);
-            const allLists = document.querySelectorAll('.skills-list');
-            
-            // Optional: Close other open lists when opening a new one
-            allLists.forEach(list => {
-                if(list.id !== id) list.style.display = 'none';
-            });
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    🚀 Skill-Based Career Guidance Project | Ready for GitHub
+  </footer>
 
-            // Toggle logic
-            if (skillDiv.style.display === "block") {
-                skillDiv.style.display = "none";
-            } else {
-                skillDiv.style.display = "block";
-            }
-        }
-    </script>
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    function findCareer() {
+      const skill = document.getElementById("skillInput").value.toLowerCase();
+      const output = document.getElementById("output");
+
+      let result = "";
+
+      if (skill.includes("coding") || skill.includes("programming")) {
+        result = `
+          <h3>Software Developer 👨‍💻</h3>
+          <p><b>Skills Needed:</b> Java, Python, JavaScript</p>
+          <p><b>Career Path:</b> Learn coding → Build projects → DSA → Job</p>
+        `;
+      } 
+      else if (skill.includes("design")) {
+        result = `
+          <h3>UI/UX Designer 🎨</h3>
+          <p><b>Skills Needed:</b> Figma, Photoshop, Creativity</p>
+          <p><b>Career Path:</b> Learn tools → Build portfolio → Freelance/Job</p>
+        `;
+      } 
+      else if (skill.includes("writing")) {
+        result = `
+          <h3>Content Writer ✍️</h3>
+          <p><b>Skills Needed:</b> Creativity, Grammar, SEO</p>
+          <p><b>Career Path:</b> Blogging → Freelancing → Full-time</p>
+        `;
+      } 
+      else if (skill.includes("communication")) {
+        result = `
+          <h3>Marketing Specialist 📢</h3>
+          <p><b>Skills Needed:</b> Communication, Strategy, Social Media</p>
+          <p><b>Career Path:</b> Learn marketing → Campaigns → Brand growth</p>
+        `;
+      } 
+      else if (skill.includes("management")) {
+        result = `
+          <h3>Business Manager 📊</h3>
+          <p><b>Skills Needed:</b> Leadership, Planning, Decision Making</p>
+          <p><b>Career Path:</b> BBA/MBA → Internship → Manager Role</p>
+        `;
+      }
+      else {
+        result = `
+          <h3>Explore More 🌍</h3>
+          <p>Try skills like coding, design, writing, communication, or management.</p>
+        `;
+      }
+
+      output.innerHTML = result;
+      output.style.display = "block";
+    }
+  </script>
+
 </body>
 </html>
